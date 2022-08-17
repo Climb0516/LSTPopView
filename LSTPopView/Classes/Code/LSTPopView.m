@@ -462,7 +462,9 @@ static const NSTimeInterval LSTPopViewDefaultDuration = -1.0f;
     LSTPopView *popView = [[LSTPopView alloc] initWithFrame:popViewFrame];
     popView.backgroundColor = [UIColor clearColor];
 
-    popView.container = parentView? parentView : [UIApplication sharedApplication].keyWindow;
+//    popView.container = parentView? parentView : [UIApplication sharedApplication].keyWindow;
+    // 修复iOS13已废弃的keywindow显示问题
+    popView.container = parentView? parentView : [UIApplication sharedApplication].delegate.window;
 
     popView.customView = customView;
     popView.backgroundView = [[LSTPopViewBgView alloc] initWithFrame:popView.bounds];
